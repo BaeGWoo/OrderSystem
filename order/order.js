@@ -25,6 +25,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const buttons1 = document.querySelectorAll('.buttonContainer1 button');
     const buttons2 = document.querySelectorAll('.buttonContainer2 button');
+    var parentElement = document.getElementById("presetDropdown");
+    for (var i = 1; i <= 10; i++) {
+        var option = document.createElement("option");
+        option.value = "btn" + i;
+        option.id = "btn" + i;
+        option.text = i;
+        parentElement.appendChild(option);
+      }
     ButtonDataReset(buttons1);
     ButtonDataReset(buttons2);
 

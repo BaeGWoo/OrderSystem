@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./Main.css">
+    <title>051마트 문자 주문</title>
+
+</head>
+
+<body>
+
+    <div class="MainContainer">
+        <h1>051마트 개금점</h1>
+
+        <label for="info">3만원이상 배달가능</label>
+        <label for="info">배달불가제품:</label>
+        <label for="info">유제품,계란,육류,수산물</label>
+
+
+        <div class="ProductContainer">
+
+            <div class="InputRow">
+
+            </div>
+            <div class="ProductSelectContainer">
+                <select id="category"></select>
+                <input type="text" id="product-search" placeholder="제품 검색" oninput="SearchProduct()">
+            </div><!--ProductSelectContainer-->
+
+
+            <div class="ProdcutOrderContainer">
+                <div class="InputRow">
+                    <input type="number" id="quantity" min="1" value="1">
+                    <label for="quantity">개</label>
+                </div>
+
+                <button id="addToCart" onclick="addToBaguni()">담기</button>
+            </div><!--ProductOrderContainer-->
+
+        </div><!--ProductContainer-->
+
+
+
+
+        <div class="OrderContainer">
+            <div class="OrderTitleContainer">
+                <div class="PresetContainer">
+                    <select id="presetDropdown" onchange="presetClick()">
+                        <option id="btn" value="" disabled selected>원하는 즐겨찾기 품목을 선택하세요</option>
+                    </select>
+                    <button id="PreSet" onclick="ShowPreSet(true)">즐겨찾기 등록</button>
+                </div>
+               
+                <h2>주문 내역</h2>
+                <button id="newOrder" onclick="clearOrderDetails()">주문정보 전체삭제</button>
+            </div><!--OrderTitleContainer-->
+
+            <textarea id="order-details" rows="5" cols="30" readonly onclick="ShowOrderDetails()"></textarea>
+            <p id="order-total">주문 총액: 0원</p>
+
+
+
+        </div><!--OrderContainer-->
+
+
+
+        <div class="InfoContainer">
+            <div class="input-row">
+                <label for="info"> </label>
+            </div>
+
+            <div class="input-row">
+                <label for="delivery-address">주소:</label>
+                <input type="text" id="delivery-address" placeholder="배송지 주소를 입력하세요">
+            </div>
+
+            <div class="input-row">
+                <label for="customer-name">이름:</label>
+                <input type="text" id="customer-name" placeholder="주문자 이름을 입력하세요">
+            </div>
+
+            <div class="input-row">
+                <label for="contact-number">연락처:</label>
+                <input type="tel" id="contact-number" placeholder="주문자 연락처를 입력하세요">
+            </div>
+
+            <div class="input-row">
+                <label for="delivery-notes">요청사항:</label>
+                <textarea id="delivery-notes" placeholder="배송시 요구사항을 입력하세요" rows="3"></textarea>
+            </div>
+
+            <div class="input-row" style="display: flex; gap: 10px;">
+                <button id="order-button" style="display: none;">문자 주문하기</button>
+
+            </div>
+
+        </div><!--InfoContainer-->
+
+
+    </div><!--MainContainer-->
+
+
+
+    <!--추천 레시피 팝업창-->
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="upper">
+
+                <h2>즐겨찾기 저장</h2>
+                <button id="PresetDeleteButton" class="PresetoptionButton">삭제</button>
+                <button id="PresetSaveButton" class="PresetoptionButton">저장</button>
+                <button id="PresetAddButton" class="PresetoptionButton">추가</button>
+                <button id="PresetcloseButton" class="PresetoptionButton">X</button>
+            </div>
+
+            <div class="Main">
+                <div class="buttonContainer1">
+                    <button id="btn1" name="PresetBtn1" onclick="PrintPresetData(this)">1</button>
+                    <button id="btn2" name="PresetBtn2" onclick="PrintPresetData(this)">2</button>
+                    <button id="btn3" name="PresetBtn3" onclick="PrintPresetData(this)">3</button>
+                    <button id="btn4" name="PresetBtn4" onclick="PrintPresetData(this)">4</button>
+                    <button id="btn5" name="PresetBtn5" onclick="PrintPresetData(this)">5</button>
+                </div>
+
+
+                <div class="buttonContainer2">
+                    <button id="btn6" name="PresetBtn6" onclick="PrintPresetData(this)">6</button>
+                    <button id="btn7" name="PresetBtn7" onclick="PrintPresetData(this)">7</button>
+                    <button id="btn8" name="PresetBtn8" onclick="PrintPresetData(this)">8</button>
+                    <button id="btn9" name="PresetBtn9" onclick="PrintPresetData(this)">9</button>
+                    <button id="btn10" name="PresetBtn10" onclick="PrintPresetData(this)">10</button>
+                </div>
+
+
+
+                <div id="order-summary">
+                    <h2>주문 내역</h2>
+                    <input type="text" id="presetTitle" placeholder="Input TITLE">
+                    <textarea id="preset-details" rows="5" cols="30" readonly></textarea>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../order/order.js"></script>
+
+
+</body>
+
+</html>

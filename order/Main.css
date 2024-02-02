@@ -1,0 +1,153 @@
+.MainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.ProductContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.ProductSelectContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    margin-bottom: 5px;
+    margin-right: 5%;
+}
+
+#category {
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+
+#product-search {
+    width: 80%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+
+/*------------------------------------------ProductOrderContainer---------------------------------*/
+
+.ProdcutOrderContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+
+.InputRow input[type="number"] {
+    width: 60px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.InputRow label {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+
+#addToCart {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#addToCart:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
+/*------------------------------------------OrderContainer---------------------------------*/
+
+
+.OrderContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.OrderTitleContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.PresetContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: -25%;
+}
+
+#presetDropdown{
+    padding: 8px;
+    width:100%;
+    margin-bottom: 2%;
+    margin-right: 5%;
+}
+#PreSet{
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color:white;
+}
+#PreSet:hover{
+    background-color: #2f3438;
+}
+.InfoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.InputRow {
+    flex-wrap: nowrap;
+    margin-bottom: 10px;
+}
