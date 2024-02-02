@@ -1,0 +1,551 @@
+  body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: 20px;
+      background-color: #f4f4f4;
+  }
+
+  h1 {
+      color: #333;
+  }
+
+
+
+
+  #order-details-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+  }
+
+  #order-details-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-height: 80%;
+      overflow-y: auto;
+  }
+
+  #order-details-list {
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 20px;
+  }
+
+  #order-details-list li {
+      padding: 15px;
+      cursor: pointer;
+      border-bottom: 1px solid #ddd;
+      transition: background-color 0.3s;
+      color: #333;
+  }
+
+  #order-details-list li:hover {
+      background-color: #f9f9f9;
+  }
+
+  #order-details-list li.selected {
+      background-color: #e0e0e0;
+  }
+
+  #delete-button {
+      margin-top: auto;
+      padding: 10px;
+      background-color: #d9534f;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+  }
+
+  #delete-button:hover {
+      background-color: #c9302c;
+  }
+
+  #close-button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+  }
+
+  #close-button:hover {
+      background-color: #555;
+  }
+
+
+
+
+
+
+
+
+  #order-summary {
+      margin-top: 20px;
+      width: 90%;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  #order-total {
+      font-weight: bold;
+  }
+
+
+
+  .input-row {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+  }
+
+  label {
+      margin-bottom: 5px;
+      color: #555;
+  }
+
+  input,
+  select,
+  textarea {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+  }
+
+  button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      
+  }
+
+  button:hover {
+      background-color: #45a049;
+  }
+
+  #fileInputContainer {
+      margin-top: 20px;
+  }
+
+  #fileInput {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      margin-top: 10px;
+  }
+
+
+
+  
+
+
+  .Menu {
+
+      background-color: #f0d1bc;
+      position: relative;
+      /* 혹은 다른 값으로 조절 */
+      z-index: 10000;
+      /* 다른 컴포넌트보다 위에 나타나도록 조절 */
+      padding: 20px;
+      height: 100%;
+
+      display: flex;
+
+      justify-content: center;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+
+
+
+  .menuItem {
+      width: 23.5%;
+      height: 70%;
+      text-align: center;
+      padding: 20px;
+      /* 조금 큰 패딩값 */
+      border: 2px solid #8B4513;
+      /* 갈색 톤의 테두리 */
+      background-color: #D2B48C;
+      /* 진한 갈색 톤의 배경색 */
+      color: #8B4513;
+      /* 갈색 톤의 글자색 */
+      font-weight: bold;
+      /* bolder 대신 bold로 수정 */
+      border-radius: 15px;
+      /* 덜 둥근 모서리 */
+      margin: 10px;
+      /* 마진 추가 */
+      display: inline-block;
+      /* 가로 정렬을 위한 속성 추가 */
+      transition: background-color 0.3s, color 0.3s;
+      /* 부드러운 전환 효과 */
+      margin-top: 7%;
+  }
+
+  .menuItem:hover {
+      background-color: #8B4513;
+      /* 호버 시 진한 갈색 배경색 */
+      color: #D2B48C;
+      /* 호버 시 글자색 변경 */
+  }
+
+
+  .EmptymenuItem {
+      width: 23.5%;
+      height: 70%;
+      text-align: center;
+      padding: 20px;
+      /* 조금 큰 패딩값 */
+      border: 2px solid #423d3a;
+      /* 갈색 톤의 테두리 */
+      background-color: #4d270c;
+      /* 진한 갈색 톤의 배경색 */
+      color: #2d2926;
+      /* 갈색 톤의 글자색 */
+      font-weight: bold;
+      /* bolder 대신 bold로 수정 */
+      border-radius: 15px;
+      /* 덜 둥근 모서리 */
+      margin: 10px;
+      /* 마진 추가 */
+      display: inline-block;
+      /* 가로 정렬을 위한 속성 추가 */
+      transition: background-color 0.3s, color 0.3s;
+      /* 부드러운 전환 효과 */
+      margin-top: 7%;
+  }
+
+  .EmptymenuItem:hover {
+      color: #2d2926;
+      background-color: #4d270c;
+  }
+
+  .closeButton {
+      position: absolute;
+      width: 20%;
+      top: 10px;
+      /* 상단으로부터의 거리 */
+      right: 10px;
+      /* 우측으로부터의 거리 */
+      background-color: #8B4513;
+      /* 닫기 버튼 배경색 */
+      color: #D2B48C;
+      /* 닫기 버튼 글자색 */
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+  }
+
+  .closeButton:hover {
+      background-color: #D2B48C;
+      /* 호버 시 닫기 버튼 배경색 변경 */
+      color: #8B4513;
+      /* 호버 시 닫기 버튼 글자색 변경 */
+  }
+
+
+  .SearchContainer {
+      position: absolute;
+      width: 90%;
+      top: 10px;
+      /* 상단으로부터의 거리 */
+
+      order: -1;
+      /* 검색 컨테이너를 첫 번째로 배치 */
+      margin-bottom: 20px;
+      /* 다른 버튼들과의 간격을 주기 위해 margin 추가 */
+
+  }
+
+  .SearchInput {
+      width: 25%;
+      padding: 10px;
+      color: #333;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+  }
+
+  .SearchButton {
+      width: 15%;
+      padding: 10px 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      color: #333;
+      background-color: #f8fafb;
+      text-align: center;
+
+      font-size: 60%;
+      /* 원하는 크기로 조절 (예: 80%) */
+
+      cursor: pointer;
+  }
+
+
+  .SearchButton:hover {
+      background-color: #d3d9de;
+  }
+
+
+
+  .PageButtons {
+      position: absolute;
+      bottom: 10px;
+      /* 상단으로부터의 거리 */
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .PageButton {
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f8fafb;
+      cursor: pointer;
+      color: #555;
+
+  }
+
+  .PageButton:hover {
+      background-color: #d3d9de;
+  }
+
+
+
+  .Billmodal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      /* 원하는 너비로 조절 */
+      max-width: 750px;
+      /* 최대 너비 설정 */
+      height: 100%;
+      /* 원하는 높이로 조절 */
+      max-height: 400px;
+      /* 최대 높이 설정 */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .Billmodal_overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      width: 100%;
+      height: 100%;
+      position: fixed;
+  }
+
+  .Bill {
+      background-color: gray;
+      display: flex;
+      /* 혹은 다른 값으로 조절 */
+      z-index: 10001;
+      /* 다른 컴포넌트보다 위에 나타나도록 조절 */
+      padding: 20px;
+      height: 100%;
+      width: 100%;
+
+
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+
+
+  .BillBoard {
+      background-color: gray;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      /* 가운데 정렬을 위한 텍스트 정렬 */
+
+      width: 80%;
+  }
+
+  .MenuName {
+      display: flex;
+      flex-direction: row;
+
+  }
+
+  .Billinput-row {
+      display: flex;
+
+      align-items: center;
+   
+  }
+
+  .CloseBill {
+      background-color: #adacab;
+      color: black;
+  }
+
+  .CloseBill:hover {
+      background-color: #0e0e0d;
+      color: white;
+  }
+
+
+  .orderBill {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgb(47, 46, 46);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+  }
+
+  .orderBill:hover {
+      background-color: darkgray;
+      color:#0e0e0d;
+  }
+
+
+  .presetButton {
+    display: flex;
+    flex-direction: row; /* 가로 정렬 */
+    gap: 10px; /* 버튼 간격 */
+    margin-bottom: 10px;
+}
+
+.presetButton button {
+    padding: 10px; /* 버튼 안의 콘텐츠와 버튼 테두리 간의 간격 조절 */
+    border: none; /* 버튼 테두리 제거 */
+    cursor: pointer;
+}
+#btn1st {
+    background-color: red; /* 첫 번째 버튼 색상 */
+}
+
+#btn2nd {
+    background-color: rgb(34, 225, 174); /* 두 번째 버튼 색상 */
+}
+
+#btn3rd {
+    background-color: blue; /* 세 번째 버튼 색상 */
+}
+
+#btn4th {
+    background-color: rgb(255, 187, 0); /* 네 번째 버튼 색상 */
+}
+
+#btn5th {
+    background-color: purple; /* 다섯 번째 버튼 색상 */
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+   margin: 3% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 80%;
+}
+
+.upper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.PresetoptionButton {
+   
+    border: none;
+    font-size: 20px;
+    
+    width: 10%;
+}
+
+.PresetoptionButton:hover {
+    color: rgb(16, 15, 15);
+}
+
+.Main {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Main button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.Main button:hover {
+    background-color: #45a049;
+}
+
+.buttonContainer1{
+    display:flex;
+    gap:10px;
+    flex-direction: row; /* 가로 정렬 */
+}
+
+.buttonContainer2{
+    display:flex;
+    gap:10px;
+    flex-direction: row; /* 가로 정렬 */
+}
