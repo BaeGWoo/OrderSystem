@@ -45,51 +45,26 @@
 
 
         <div class="OrderContainer">
-            <div class="OrderTitleContainer">
-                <div class="PresetContainer">
-                    <select id="presetDropdown" onchange="presetClick()">
-                        <option id="btn" value="" disabled selected>원하는 즐겨찾기 품목을 선택하세요</option>
-                    </select>
-                    <button id="PreSet" onclick="ShowPreSet(true)">즐겨찾기 등록</button>
-                </div>
-               
-                <h2>주문 내역</h2>
-                <button id="newOrder" onclick="clearOrderDetails()">주문정보 전체삭제</button>
-            </div><!--OrderTitleContainer-->
+            <select id="presetDropdown" onchange="presetClick()">
+                <option id="btn" value="" disabled selected>원하는 즐겨찾기 품목을 선택하세요</option>
+            </select>
 
-            <textarea id="order-details" rows="5" cols="30" readonly onclick="ShowOrderDetails()"></textarea>
+            <textarea id="order-details" rows="5" cols="30" readonly onclick="ShowOrderDetails()"
+                placeholder="장바구니가 비어있습니다."></textarea>
+            <button id="PreSet" onclick="ShowPreSet(true)">즐겨찾기 등록</button>
             <p id="order-total">주문 총액: 0원</p>
-
-
-
+            <button id="newOrder" onclick="clearOrderDetails()">주문정보 전체삭제</button>
         </div><!--OrderContainer-->
 
 
 
         <div class="InfoContainer">
-            <div class="input-row">
-                <label for="info"> </label>
-            </div>
+            <label for="info"> </label>
+            <input type="text" id="delivery-address" placeholder="배송지 주소를 입력하세요">
+            <input type="text" id="customer-name" placeholder="주문자 이름을 입력하세요">
+            <input type="tel" id="contact-number" placeholder="주문자 연락처를 입력하세요">
+            <textarea id="delivery-notes" placeholder="배송시 요구사항을 입력하세요" rows="3"></textarea>
 
-            <div class="input-row">
-                <label for="delivery-address">주소:</label>
-                <input type="text" id="delivery-address" placeholder="배송지 주소를 입력하세요">
-            </div>
-
-            <div class="input-row">
-                <label for="customer-name">이름:</label>
-                <input type="text" id="customer-name" placeholder="주문자 이름을 입력하세요">
-            </div>
-
-            <div class="input-row">
-                <label for="contact-number">연락처:</label>
-                <input type="tel" id="contact-number" placeholder="주문자 연락처를 입력하세요">
-            </div>
-
-            <div class="input-row">
-                <label for="delivery-notes">요청사항:</label>
-                <textarea id="delivery-notes" placeholder="배송시 요구사항을 입력하세요" rows="3"></textarea>
-            </div>
 
             <div class="input-row" style="display: flex; gap: 10px;">
                 <button id="order-button" style="display: none;">문자 주문하기</button>
@@ -97,8 +72,6 @@
             </div>
 
         </div><!--InfoContainer-->
-
-
     </div><!--MainContainer-->
 
 
@@ -107,13 +80,13 @@
 
     <div id="myModal" class="modal">
         <div class="modal-content">
+            <button id="PresetcloseButton" class="PresetoptionButton">X</button>
+            <h2 style="color:aliceblue">즐겨찾기</h2>
+          
             <div class="upper">
-
-                <h2>즐겨찾기 저장</h2>
                 <button id="PresetDeleteButton" class="PresetoptionButton">삭제</button>
                 <button id="PresetSaveButton" class="PresetoptionButton">저장</button>
                 <button id="PresetAddButton" class="PresetoptionButton">추가</button>
-                <button id="PresetcloseButton" class="PresetoptionButton">X</button>
             </div>
 
             <div class="Main">
@@ -137,9 +110,9 @@
 
 
                 <div id="order-summary">
-                    <h2>주문 내역</h2>
-                    <input type="text" id="presetTitle" placeholder="Input TITLE">
-                    <textarea id="preset-details" rows="5" cols="30" readonly></textarea>
+                    
+                    <input type="text" id="presetTitle" placeholder="즐겨찾기 이름을 입력해주세요">
+                    <textarea id="preset-details" rows="5" cols="30" readonly placeholder="즐겨찾기 바구니가 비어있습니다."></textarea>
 
                 </div>
 

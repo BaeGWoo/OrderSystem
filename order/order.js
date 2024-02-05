@@ -294,6 +294,7 @@ function ShowOrderDetails() {
         // 삭제 버튼 추가
         const deleteButton = document.createElement('button');
         deleteButton.textContent = '선택 삭제';
+        deleteButton.id="deleteButton";
         deleteButton.addEventListener('click', function () {
             DeleteItemFrombaguni();
             orderDetailsPopup.remove(); // 선택 삭제 후 팝업 닫기

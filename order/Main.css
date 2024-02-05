@@ -30,11 +30,12 @@
     flex-direction: column;
 
     margin-bottom: 5px;
-    margin-right: 5%;
+    margin-right: 0.3%;
 }
 
 #category {
-    padding: 8px;
+    width:90%;
+    padding: 10px;
     margin-bottom: 10px;
 }
 
@@ -69,7 +70,6 @@
 }
 
 .InputRow label {
-    margin-left: 10px;
     font-size: 16px;
 }
 
@@ -105,6 +105,8 @@
     justify-content: center;
     flex-direction: column;
 
+
+   
 }
 
 .OrderTitleContainer{
@@ -114,19 +116,12 @@
     flex-direction: row;
 }
 
-.PresetContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-left: -25%;
-}
 
 #presetDropdown{
     padding: 8px;
     width:100%;
     margin-bottom: 2%;
-    margin-right: 5%;
+    
 }
 #PreSet{
     padding: 5px 10px;
@@ -140,14 +135,271 @@
 #PreSet:hover{
     background-color: #2f3438;
 }
-.InfoContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+#order-details {
+    width: 100%;
+    height: 200px; /* 높이를 조절할 수 있습니다. */
+    padding: 10px; /* 내부 여백 설정 */
+    border: 1px solid #ccc; /* 테두리 스타일 설정 */
+    border-radius: 5px; /* 테두리 모서리를 둥글게 만듭니다. */
+    font-size: 16px; /* 폰트 크기 설정 */
+   
+    margin-bottom: 5%;
+  }
+  
+  #order-details:focus {
+    border-color: #007bff; /* 포커스될 때 테두리 색상 변경 */
+    outline: none; /* 포커스된 상태에서 외곽선 제거 */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* 포커스될 때 그림자 효과 추가 */
+  }
+
+
+#newOrder{
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color:white;
 }
 
+
+
+.InfoContainer {
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.InfoContainer > * {
+    padding: 15px 5px;
+    margin-bottom: 5%;
+    width:100%;
+}
+
+#order-button{
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color:white;
+}
 
 .InputRow {
     flex-wrap: nowrap;
     margin-bottom: 10px;
 }
+
+
+
+
+
+
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    
+    
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background:#BCBC9D;
+   margin: 3% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 33%;
+    height: 80%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.upper {
+    display: flex;
+    width:100%;
+    align-items: center;
+    justify-content: center;
+    
+    margin-left: -5%;
+    margin-bottom: 5%;
+}
+
+.PresetoptionButton {
+    width: 50px; /* 버튼의 너비를 100px로 설정합니다. */
+    height: 35px; /* 버튼의 높이를 50px로 설정합니다. */
+   
+    background-color: #FD5E53;
+    font-size: 13px;
+    border: none;
+    margin-left: 5%;
+
+    
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4); /* 그림자 효과 추가 */
+}
+
+
+.PresetoptionButton:hover {
+    background-color: #5c2a29;
+    color:#ccc;
+}
+
+
+
+
+
+.buttonContainer1,.buttonContainer2{
+    display:flex;
+    gap:10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 3%;
+}
+
+.Main button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.Main button:hover {
+    background-color: #45a049;
+}
+
+
+
+
+#order-details-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+#order-details-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+#order-details-list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+#order-details-list li {
+    padding: 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s;
+    color: #333;
+}
+
+#order-details-list li:hover {
+    background-color: #f9f9f9;
+}
+
+#order-details-list li.selected {
+    background-color: #e0e0e0;
+}
+
+#deleteButton {
+   
+    padding: 10px;
+    background-color: #d9534f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#deleteButton:hover {
+    background-color: #c9302c;
+}
+
+#close-button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#close-button:hover {
+    background-color: #555;
+}
+
+
+
+
+
+
+
+
+#order-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+}
+
+#presetTitle{
+    padding :10px;
+    margin-bottom: 2%;
+}
+
+#preset-details{
+    height:150px;
+}
+
+#PresetcloseButton{
+   margin-right: -80%;
+   margin-top: -10%;
+}
+
+
+
+#order-total {
+    font-weight: bold;
+}
+
+
+
+
+
