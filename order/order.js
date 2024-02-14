@@ -5,8 +5,8 @@ let curTotal = 0;
 let SelectedButton;
 let PresetMode = true;
 const categoryDropdown = document.getElementById("category");
-const initialDropdownHTML = document.getElementById('presetDropdown').innerHTML;
-//test
+let initialDropdownHTML;
+
 //#region 기본구성
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -25,19 +25,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const buttons1 = document.querySelectorAll('.buttonContainer1 button');
     const buttons2 = document.querySelectorAll('.buttonContainer2 button');
-    var parentElement = document.getElementById("presetDropdown");
-    for (var i = 1; i <= 10; i++) {
-        var option = document.createElement("option");
-        option.value = "btn" + i;
-        option.id = "btn" + i;
-        option.text = i;
-        parentElement.appendChild(option);
-      }
     ButtonDataReset(buttons1);
     ButtonDataReset(buttons2);
+    //-----------------------------------------dropdown option10개 추가해서 넣기
+    for (let i = 1; i <= 10; i++) {
+        const tempDropdown = document.getElementById('presetDropdown');
+        const tempOption = this.createElement('option');
+        tempOption.id = "btn" + i;
+        tempDropdown.appendChild(tempOption);
+    }
 
+    initialDropdownHTML = document.getElementById('presetDropdown').innerHTML;
+    updateDropdownOptions();
     //updateBaguni();
     clearOrderDetails();
+
+
     // 제품 데이터를 로드합니다.
     fetch('../config/Product.json')
         .then(response => response.json())
@@ -61,7 +64,7 @@ function ButtonDataReset(buttons) {
             // 클릭된 버튼의 ID를 키로 사용
             const presetKey = button.id;
             let presetName = presetKey;
-            button.textContent = "등록가능";
+            button.textContent = "X";
 
             const getRequest = presetStore.get(presetName);
 
@@ -70,7 +73,7 @@ function ButtonDataReset(buttons) {
                 if (!existingData) {
                     const presetData = {
                         presetName: presetName,
-                        presetTitle: "등록가능",
+                        presetTitle: "X",
                         presetMenu: []
                     };
 
@@ -107,7 +110,7 @@ function updateDropdownOptions() {
         // 모든 드롭다운 옵션에 대해서
         for (let i = 0; i < dropdown.options.length; i++) {
             const option = dropdown.options[i];
-
+            console.log(option);
             // 옵션의 id와 동일한 key값을 가진 preset 데이터를 가져오기
             const presetKey = option.id; // 예: 1, 2, 3...
             const getRequest = presetStore.get(presetKey);
@@ -117,7 +120,7 @@ function updateDropdownOptions() {
 
                 // 가져온 데이터가 있으면 해당 presetTitle을 옵션의 text로 설정
                 if (presetData) {
-                    if (presetData.presetTitle === "등록가능")
+                    if (presetData.presetTitle === "X")
                         option.style.display = 'none';
                     //option.textContent = presetData.presetTitle.replace('btn', '');
                     else {
@@ -294,7 +297,6 @@ function ShowOrderDetails() {
         // 삭제 버튼 추가
         const deleteButton = document.createElement('button');
         deleteButton.textContent = '선택 삭제';
-        deleteButton.id="deleteButton";
         deleteButton.addEventListener('click', function () {
             DeleteItemFrombaguni();
             orderDetailsPopup.remove(); // 선택 삭제 후 팝업 닫기
@@ -445,6 +447,8 @@ function ShowPreSet(check) {
     }
     Presetbaguni = [];
     if (PresetMode) {
+        document.body.style.overflow = "hidden";
+        document.getElementById("myModal").style.overflow = "hidden";
         Presetbaguni.push(...baguni.map(item => ({ ...item })));
         const PresetDetails = document.getElementById("preset-details"); // 장바구니
         PresetDetails.value = '';
@@ -455,6 +459,12 @@ function ShowPreSet(check) {
     }
     document.getElementById("myModal").style.display = "flex";
     console.log(Presetbaguni);
+    const buttons = document.querySelectorAll('.buttonContainer1 button, .buttonContainer2 button');
+    buttons.forEach(button => {
+        if (button.textContent !== 'X') {
+            button.style.backgroundColor = '#636ae5'; // 변경할 색상 설정
+        }
+    });
 }
 
 document.getElementById("preset-details").addEventListener('click', () => {
@@ -519,9 +529,9 @@ function showPrsetOrderDetails() {
         closeButton.addEventListener('click', function () {
             orderDetailsPopup.remove(); // 팝업 닫기
             document.getElementById("myModal").style.display = "flex";
-            MinusPresetOrderDetails();
+            //MinusPresetOrderDetails();
             UpdatePresetOrderDetails();
-            Presetbaguni = [];
+            //Presetbaguni = [];
         });
 
 
@@ -537,9 +547,9 @@ function showPrsetOrderDetails() {
             if (event.target === orderDetailsPopup) {
                 orderDetailsPopup.remove(); // 팝업 닫기
                 document.getElementById("myModal").style.display = "flex";
-                MinusPresetOrderDetails();
+                //MinusPresetOrderDetails();
                 UpdatePresetOrderDetails();
-                Presetbaguni = [];
+                //Presetbaguni = [];
             }
         });
     }
@@ -612,6 +622,7 @@ function MinusPresetOrderDetails() {
 //dropdown목록을 curOrder->preset 테이블의 정보를 바탕으로 최신화한다.
 document.getElementById("PresetcloseButton").addEventListener("click", function () {
     document.getElementById("myModal").style.display = "none";
+    document.body.style.overflow = "auto";
     // Presetbaguni = [];
     const PresetDetails = document.getElementById("preset-details"); // 장바구니
     PresetDetails.value = '';
@@ -624,7 +635,7 @@ document.getElementById("PresetcloseButton").addEventListener("click", function 
         const clickedButtons = document.getElementsByName(SelectedButton);
         const clickedButton = clickedButtons[0];
         // clickedButton.textContent = "등록가능";
-        const initialColor = '#4CAF50';
+        const initialColor = '#6c6d6e';
         clickedButton.style.backgroundColor = initialColor;
         SelectedButton = '';
     }
@@ -686,6 +697,7 @@ function presetSave(SelectedButton) {
     const clickedButton = clickedButtons[0];
 
     clickedButton.textContent = presetName.value;
+
     const dropdown = document.getElementById('presetDropdown');
     const option = dropdown.querySelector(`option[value="${clickedButton.id}"]`);
 
@@ -739,7 +751,7 @@ function presetSave(SelectedButton) {
                 };
             }
             Presetbaguni = [];
-            const initialColor = '#4CAF50';
+            const initialColor = '#2196F3';
             clickedButton.style.backgroundColor = initialColor;
         };
 
@@ -751,7 +763,7 @@ document.getElementById("PresetDeleteButton").addEventListener("click", function
     if (SelectedButton) {
         const clickedButtons = document.getElementsByName(SelectedButton);
         const clickedButton = clickedButtons[0];
-        clickedButton.textContent = "등록가능";
+        clickedButton.textContent = "X";
         const request = indexedDB.open('CurOrder', 1);
         const clickedKey = clickedButton.id;
 
@@ -766,7 +778,7 @@ document.getElementById("PresetDeleteButton").addEventListener("click", function
 
             getRequest.onsuccess = function (e) {
                 const existingPresetData = e.target.result;
-                existingPresetData.presetTitle = "등록가능";
+                existingPresetData.presetTitle = "X";
                 existingPresetData.presetMenu = [];
 
                 // 업데이트된 데이터를 다시 저장
@@ -779,7 +791,7 @@ document.getElementById("PresetDeleteButton").addEventListener("click", function
                 const PresetDetails = document.getElementById("preset-details"); // 장바구니
                 PresetDetails.value = '';
                 const PresetTitle = document.getElementById("presetTitle").value = '';
-                const initialColor = '#4CAF50';
+                const initialColor = '#6c6c6e';
                 clickedButton.style.backgroundColor = initialColor;
             }
         }
@@ -796,7 +808,7 @@ document.getElementById("PresetAddButton").addEventListener("click", function ()
         const baguniProduct = baguni.find(product => product.name === item.name);
         if (baguniProduct) {
             // 이미 존재하는 상품인 경우 업데이트
-            baguniProduct.count += item.count;
+          baguniProduct.count = parseInt(item.count)+parseInt(baguniProduct.count);
             baguniProduct.value = parseInt(baguniProduct.count) * parseInt(target.price);
         }
         else {
@@ -844,7 +856,7 @@ function LoadMenuToPresetbaguni(ButtonID) {
         Presetbaguni = [];
         getRequest.onsuccess = function (e) {
             const existingPresetData = e.target.result;
-            if (existingPresetData.presetTitle != "등록가능")
+            if (existingPresetData.presetTitle != "X")
                 document.getElementById("presetTitle").value = existingPresetData.presetTitle;
             else
                 document.getElementById("presetTitle").value = '';
@@ -909,16 +921,18 @@ async function PrintPresetData(ClickedButton) {
 
 
 function clickedButtonColorChange(NewButton) {
+    const clickedButtons = document.getElementsByName(SelectedButton);
+    const clickedButton = clickedButtons[0];
     if (SelectedButton) {
-        const clickedButtons = document.getElementsByName(SelectedButton);
-        const clickedButton = clickedButtons[0];
-        const initialColor = '#4CAF50';
-        clickedButton.style.backgroundColor = initialColor;
+        const initialColor = '#6c6d6e';
+        if (clickedButton.textContent === "X")
+            clickedButton.style.backgroundColor = initialColor;
     }
     SelectedButton = NewButton;
     const CurButton = document.getElementsByName(SelectedButton);
     const CurclickedButton = CurButton[0];
-    CurclickedButton.style.backgroundColor = '#2196F3';
+    if (CurclickedButton.textContent === "X")
+        CurclickedButton.style.backgroundColor = '#de6e6e';
 }
 
 
