@@ -516,6 +516,7 @@ function showPrsetOrderDetails() {
         const SaveButton = document.createElement('button');
         SaveButton.textContent = '저장';
         SaveButton.addEventListener('click', function () {
+            presetSave(SelectedButton);
             orderDetailsPopup.remove(); // 팝업 닫기
             document.getElementById("myModal").style.display = "flex";
             UpdatePresetOrderDetails();
@@ -673,12 +674,13 @@ document.getElementById("PresetSaveButton").addEventListener("click", function (
 
 
 
+
     if (SelectedButton) {
         presetSave(SelectedButton);
         // document.getElementById("myModal").style.display = "none";
         // Presetbaguni=[];
-        MinusPresetOrderDetails();//->close버튼기능으로 이동
-        document.getElementById("presetTitle").value = '';
+      //  MinusPresetOrderDetails();//->close버튼기능으로 이동
+       // document.getElementById("presetTitle").value = '';
         SelectedButton = '';
 
         //  document.getElementById("myModal").style.display = "flex";
@@ -687,6 +689,8 @@ document.getElementById("PresetSaveButton").addEventListener("click", function (
     }
     else
         window.alert("선택된 버튼이 없습니다.");
+
+       // Presetbaguni = [];
 })
 
 //현재 선택된 버튼의 id에 해당하는 curOrder->preset 테이블키에 Presetbaguni의 내용을 할당
@@ -750,7 +754,7 @@ function presetSave(SelectedButton) {
                     console.error('Error updating data:', error);
                 };
             }
-            Presetbaguni = [];
+            //Presetbaguni = [];
             const initialColor = '#2196F3';
             clickedButton.style.backgroundColor = initialColor;
         };
